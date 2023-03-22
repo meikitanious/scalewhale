@@ -29,7 +29,7 @@ function handleFormSubmit(event) {
     <div class="footer-divider">
         <div class="footer-left">
             <a href="/">
-                <img class="footer-nav-logo" href="logo" alt="Scalewhale Logo" src="/logos/scalewhale.svg"/>
+                <img class="footer-nav-logo" alt="Scalewhale Logo" src="/logos/scalewhale.svg"/>
             </a>
             <h3>Connect with us online</h3>
             <ul class="footer-social-links">
