@@ -88,7 +88,7 @@ function handleFormSubmit(event) {
         <div class="testimonial">
             <!-- svelte-ignore a11y-media-has-caption -->
             <video controls disablePictureInPicture controlsList="nodownload noplaybackrate" class="testimonial-video">
-                <source src="/videos/testimonials/nzxt/jsnow.mp4" type='video/mp4;'/>
+                <source src="https://images.scalewhale.com/jsnow.mp4" type='video/mp4;'/>
             </video>
             <div class="testimonial-caption">
                 <h3>Jeff Snow</h3>
