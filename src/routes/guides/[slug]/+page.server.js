@@ -1,5 +1,5 @@
 import { STRAPI_URL, STRAPI_AUTH  } from '$env/static/private';
-export const prerender = true;
+export const prerender = false;
 import { redirect } from '@sveltejs/kit';
 export async function load({ params }) {
     if (params === 1 ) {
