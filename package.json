@@ -1,0 +1,33 @@
+{
+	"name": "my-app",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "playwright test",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.28.1",
+		"@popperjs/core": "^2.11.6",
+		"@sveltejs/adapter-cloudflare": "^2.2.0",
+		"@sveltejs/kit": "^1.12.0",
+		"classnames": "^2.3.2",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"sass": "^1.57.1",
+		"svelte": "^3.54.0",
+		"svelte-preprocess": "^4.10.7",
+		"svelte-sitemap": "^2.5.4",
+		"sveltekit-static-sitemap": "^1.0.2",
+		"vite": "^4.0.0",
+		"wrangler": "^2.13.0"
+	},
+	"type": "module"
+}
