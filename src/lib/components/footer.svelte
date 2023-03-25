@@ -1,28 +1,76 @@
-<script>
-function handleFormSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  const fallbackDestination = form.id;
-  fetch(`/api/forms/fallback/${fallbackDestination}`, {
-    method: 'POST',
-    body: new FormData(form)
-  }).then(response => {
-    if (response.ok) {
-      // Handle successful response here
-      console.log('Form submitted successfully.');
-    } else if (response.status === 405) {
-      // Handle 405 error here
-      console.error('Form submission failed with error 405 Method Not Allowed.');
-    } else {
-      // Handle other errors here
-      console.error(`Form submission failed with error ${response.status}.`);
+<script> 
+import { toast } from '$lib/toast';
+import posthog from 'posthog-js';
+import { page } from '$app/stores';
+let newsletterSubmits = 0;
+
+async function newsletterPost(formData) {
+    try {
+        const response = await fetch('/api/forms/newsletter', {
+            method: 'POST',
+            body: formData
+        });
+        if (response.ok) {
+            newsletterSubmits = 1;
+            toast.pop();
+            toast.push(`✅ Thanks for signing up!`);
+            const responseData = await response.json();
+            const userData = responseData.data;
+            posthog.identify(userData.email);
+            posthog.people.set({Email: userData.email});
+            posthog.capture('Newsletter Signup', {
+                Location: page.path,
+            })
+            /* Analytics will fire on this response */
+        } else if (response.created) {
+            toast.pop();
+            toast.push(`🛑 Our server detected you as a bot. If this was an error, email hello@scalewhale.com instead.`, {
+                theme: {
+                    '--toastBackground': '#FFDEDE',
+                }});
+            posthog.capture('Bot Detected')
+            /* Analytics will not fire on this response */
+        } else {
+            console.error('Form submission failed:', response.statusText);
+            toast.push(`🛑 Server Error - Email hello@scalewhale.com instead`, {
+                theme: {
+                    '--toastBackground': '#FFDEDE',
+                }
+            });
+            posthog.capture('Form Error',{
+                Status: response.statusText
+            })
+        }
     }
-  }).catch(error => {
-    // Handle fetch error here
-    console.error(error.message);
-  });
+    catch (error) {
+        console.error('Form submission failed:', error);
+        toast.push(`Server Error - Email hello@scalewhale.com instead`, {
+                theme: {
+                    '--toastBackground': '#FFDEDE',
+                }
+            })
+        posthog.capture('Form Error',{
+            Location: 'Homepage',
+            Status: error
+        })
+    }
+};
+
+async function newsletterSubmit() {
+    const formData = new FormData(this);
+    if (newsletterSubmits === 0){
+        newsletterPost(formData)
+    } else {
+        const submitAgain = confirm('Do you want to submit again?');
+        if (submitAgain) {
+            newsletterSubmits = 0;
+            newsletterPost(formData);
+        } else {
+            this.reset();
+        }
+    }
 }
-</script>
+ </script>
 
 <footer class="footer">
     <hr style="width:100%">
@@ -60,10 +108,10 @@ function handleFormSubmit(event) {
     <div class="footer-newsletter">
         <h3 class="footer-newsletter-heading">Get WhaleMail</h3>
         <p class="footer-newsletter-description">Bi-weekly newsletter with our guides, events, and updates.</p>
-        <form action="?/newsletter" method="post" id="newsletter" on:submit={handleFormSubmit}>
+        <form method="post" id="newsletter" action="" on:submit|preventDefault={newsletterSubmit}>
             <input tabindex="-1" type="text" name="url" id="url" autocomplete="off">
             <input type ="email" name="email" id="email" placeholder="Business Email" required>
-            <button formaction="?/newsletter" formmethod="post" type="submit" name="submit" id="submit" required>
+            <button formmethod="post" type="submit" name="submit" id="submit" on:submit|preventDefault={newsletterSubmit} required>
                 <img alt="Submit" src="/icons/arrowright.svg">
             </button> 
         </form>

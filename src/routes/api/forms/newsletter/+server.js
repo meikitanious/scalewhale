@@ -53,23 +53,23 @@ const slackPayload = (slackData) => {
 /**Form Validation*/
 
 const isBlacklisted = async (ip_address, domain) => {
-    const ipResponse = await fetch(`${STRAPI_URL}ip-blacklists?filters[ip_address][$eq]=${ip_address}`);
-    const ipData = await ipResponse.json();
-    const domainResponse = await fetch(`${STRAPI_URL}domain-blacklists?filters[domain][$eq]=${domain}`);
-    const domainData = await domainResponse.json();
-    return ipData.data.length > 0 || domainData.data.length > 0;
+  const ipResponse = await fetch(`${STRAPI_URL}ip-blacklists?filters[ip_address][$eq]=${ip_address}`);
+  const ipData = await ipResponse.json();
+  const domainResponse = await fetch(`${STRAPI_URL}domain-blacklists?filters[domain][$eq]=${domain}`);
+  const domainData = await domainResponse.json();
+  return (ipData && ipData.data) || (domainData && domainData.data) || false;
 };
 const addToBlacklist = async (ip_address, domain) => {
-    await Promise.all([
-      fetch(`${STRAPI_URL}ip-blacklists`, {
-        ...strapiRequest(),
-        body: strapiPayload(ip_address)
-      }),
-      fetch(`${STRAPI_URL}domain-blacklists`, {
-        ...strapiRequest(),
-        body: strapiPayload(domain)
-      })
-    ]);
+  await Promise.all([
+    fetch(`${STRAPI_URL}ip-blacklists`, {
+      ...strapiRequest(),
+      body: strapiPayload(ip_address)
+    }),
+    fetch(`${STRAPI_URL}domain-blacklists`, {
+      ...strapiRequest(),
+      body: strapiPayload(domain)
+    })
+  ]);
 };
   
 export async function POST({ request, getClientAddress }) {
@@ -80,11 +80,13 @@ export async function POST({ request, getClientAddress }) {
     const domain = email.split('@')[1];
     const data = {email};
 
+    let responseStatus;
+
    if (await isBlacklisted(ip_address, domain)) {
-      console.log("Blacklisted");
+      responseStatus = 202
     } else if (honeypot) {
       await addToBlacklist(ip_address, domain);
-      console.log("Add to Blacklist")
+      responseStatus = 202
     } else {
       console.log("Sent successfully!", data);
       /**Strapi Webhook */
@@ -97,5 +99,13 @@ export async function POST({ request, getClientAddress }) {
         ...slackRequest,
         body: slackPayload(data)
       });
+      responseStatus = 200
     };
+    let responseBody;
+    if (responseStatus === 200){
+      responseBody = JSON.stringify({success: true, data: data});
+    } else {
+      responseBody = 'Successful!';
+    }
+    return new Response(responseBody, {status: responseStatus});
 }

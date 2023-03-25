@@ -1,5 +1,6 @@
-import { SLACK_LEAD_KEY, SLACK_NEWSLETTER_KEY, SLACK_URL, STRAPI_URL, STRAPI_AUTH  } from '$env/static/private';
-
+import { STRAPI_URL, STRAPI_AUTH  } from '$env/static/private';
+export const prerender = true;
+const strapiQuerySEO = 'home?populate[social_image][populate]=[*]';
 const strapiQuery = 'blogs?fields[0]=title&fields[1]=slug&fields[2]=likes&fields[3]=date&populate[tags][fields][0]=tagName&populate[author][fields][0]=fname&populate[author][fields][1]=lname&populate[author][populate]=pfp&sort[0]=date%3Adesc';
 
 export async function load() {
@@ -31,172 +32,23 @@ export async function load() {
         }
     }
   }));
-  return { summaries };
-};
-/* Header Generator */
-const strapiRequest = () => {
-  let headers = {
-      'Content-Type': 'application/json',
+  const resSEO = await fetch(`${STRAPI_URL}${strapiQuerySEO}`, {
+    headers: {
       'Authorization': `Bearer ${STRAPI_AUTH}`
-    };
-  return {
-    method: 'POST',
-    headers: headers,
-  }
-};
-const slackRequest = {
-  method: 'POST', 
-  headers: {
-    'Content-Type': 'application/json'
-  },
-};
-
-/* Payload Generators */
-const strapiPayload = (strapiData) => {
-  const payload = {
-    data: strapiData
-  };
-  return JSON.stringify(payload);
-};
-const slackPayload = (slackData) => {
-  const payload = {
-    "blocks": [
-      {
-        "type": "header",
-        "text": {
-          "type": "plain_text",
-          "text": "New Submission"
-        }
-      },
-      {
-        "type": "divider"
-      }
-    ]
-  };
-
-  if (slackData.Name) {
-    payload.blocks.push({
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": `*Name* :adult:\n${slackData.Name}`
-      }
-    });
-
-    payload.blocks.push({
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": `*Company* :office:\n${slackData.Company}`
-      }
-    });
-
-    payload.blocks.push({
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": `*Query* :question:\n${slackData.Query}`
-      }
-    });
-    payload.blocks.push({
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": `*Email* :email:\n${slackData.Email}`
-      }
-    });
-  } else { payload.blocks.push({
-    "type": "section",
-    "text": {
-      "type": "mrkdwn",
-      "text": `*Email* :email:\n${slackData.email}`
     }
   });
-}
-  return JSON.stringify(payload);
+    const jsonSEO = await resSEO.json();
+    const cornerstone = {
+        seo: {
+          title: jsonSEO.data.attributes.seo_title,
+          desc: jsonSEO.data.attributes.seo_desc,
+          kw: jsonSEO.data.attributes.seo_keywords,
+        },
+        social: {
+          title: jsonSEO.data.attributes.social_title,
+          desc: jsonSEO.data.attributes.social_desc,
+          image: jsonSEO.data.attributes.social_image.data.attributes.formats.medium.url,
+        },
+      };
+  return { summaries, cornerstone };
 };
-
-/**Form Validation*/
-
-const isBlacklisted = async (ip_address, domain) => {
-  const ipResponse = await fetch(`${strapiURL}ip-blacklists?filters[ip_address][$eq]=${ip_address}`);
-  const ipData = await ipResponse.json();
-  const domainResponse = await fetch(`${strapiURL}domain-blacklists?filters[domain][$eq]=${domain}`);
-  const domainData = await domainResponse.json();
-
-  return ipData.data.length > 0 || domainData.data.length > 0;
-};
-
-const addToBlacklist = async (ip_address, domain) => {
-  await Promise.all([
-    fetch(`${strapiURL}ip-blacklists`, {
-      ...strapiRequest(),
-      body: strapiPayload(ip_address)
-    }),
-    fetch(`${strapiURL}domain-blacklists`, {
-      ...strapiRequest(),
-      body: strapiPayload(domain)
-    })
-  ]);
-};
-
-export const actions = {
-  contact: async ({ request, getClientAddress }) => { 
-    const formData = await request.formData();
-    const ip_address = getClientAddress();
-    const honeypot = String(formData.get('url'));
-    const Name = String(formData.get('name'));
-    const Email = String(formData.get('email'));
-    const Company = String(formData.get('company'));
-    const Query = String(formData.get('query'));
-    const domain = Email.split('@')[1];
-
-    const data = {Name, Email, Company, Query};
-
-    if (await isBlacklisted(ip_address, domain)) {
-      console.log("Blacklisted");
-    } else if (honeypot) {
-      await addToBlacklist(ip_address, domain);
-      console.log("Add to Blacklist")
-    } else {
-      console.log("Sent successfully!", data);
-     /**Strapi Webhook */
-     await fetch(`${strapiURL}lead-forms`, {
-      ...strapiRequest(),
-      body: strapiPayload(data)
-    });
-    /**Slack Webhook */
-    await fetch(`${SLACK_URL}${SLACK_LEAD_KEY}`, {
-      ...slackRequest,
-      body: slackPayload(data)
-    });
-    }
-  },
-  newsletter: async ({ request, getClientAddress }) => { 
-    const formData = await request.formData();
-    const ip_address = getClientAddress();
-    const honeypot = String(formData.get('url'));
-    const email = String(formData.get('email'));
-    const domain = email.split('@')[1];
-    const data = {email};
-
-    if (await isBlacklisted(ip_address, domain)) {
-      console.log("Blacklisted");
-    } else if (honeypot) {
-      await addToBlacklist(ip_address, domain);
-      console.log("Add to Blacklist")
-    } else {
-      console.log("Sent successfully!", data);
-      /**Strapi Webhook */
-      await fetch(`${strapiURL}newsletter-signups`, {
-        ...strapiRequest(),
-        body: strapiPayload(data)
-      });
-      /**Slack Webhook */
-      await fetch(`${SLACK_URL}${SLACK_NEWSLETTER_KEY}`, {
-        ...slackRequest,
-        body: slackPayload(data)
-      });
-    }
-  }
-}

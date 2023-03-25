@@ -4,6 +4,16 @@
     if (data && data.blog && data.blog[0]){
         ({article, tags, author, seo, social} = data.blog[0])
     }
+    import posthog from 'posthog-js';
+    import { onMount } from 'svelte';
+
+    onMount( () => {
+        posthog.capture('$pageview', {
+            Title: seo.title,
+            Category: 'Blog Post',
+            Tags: JSON.stringify(tags)
+        });
+});
 </script>
 <svelte:head>
     <!--SEO Meta Data-->

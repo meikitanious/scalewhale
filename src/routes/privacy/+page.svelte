@@ -1,5 +1,14 @@
 <script>
     export let data;
+    import posthog from 'posthog-js';
+    import { onMount } from 'svelte';
+
+onMount( () => {
+    posthog.capture('$pageview', {
+        Title: 'Privacy',
+        Category: 'Cornerstone',
+    });
+});
 </script>
 <svelte:head>
     <!--SEO Meta Data-->

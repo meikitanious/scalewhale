@@ -1,5 +1,6 @@
 import { STRAPI_URL, STRAPI_AUTH  } from '$env/static/private';
 export const prerender = true;
+const strapiQuerySEO = 'guide?populate[social_image][populate]=[*]';
 const strapiQuery = 'blogs?pagination[page]=1&pagination[pageSize]=6&fields[0]=title&fields[1]=slug&fields[2]=likes&fields[3]=date&populate[tags][fields][0]=tagName&populate[author][fields][0]=fname&populate[author][fields][1]=lname&populate[author][populate]=pfp&sort[0]=date%3Adesc';
 export async function load() {
     const res = await fetch(`${STRAPI_URL}${strapiQuery}`, {
@@ -31,6 +32,24 @@ export async function load() {
           }
       }
     }));
-    return { summaries, pageCount };
+    const resSEO = await fetch(`${STRAPI_URL}${strapiQuerySEO}`, {
+        headers: {
+          'Authorization': `Bearer ${STRAPI_AUTH}`
+        }
+      });
+        const jsonSEO = await resSEO.json();
+        const cornerstone = {
+            seo: {
+              title: jsonSEO.data.attributes.seo_title,
+              desc: jsonSEO.data.attributes.seo_desc,
+              kw: jsonSEO.data.attributes.seo_keywords,
+            },
+            social: {
+              title: jsonSEO.data.attributes.social_title,
+              desc: jsonSEO.data.attributes.social_desc,
+              image: jsonSEO.data.attributes.social_image.data.attributes.formats.medium.url,
+            },
+          };
+    return { summaries, pageCount, cornerstone};
   }
   

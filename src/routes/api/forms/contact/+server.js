@@ -78,7 +78,7 @@ const isBlacklisted = async (ip_address, domain) => {
     const ipData = await ipResponse.json();
     const domainResponse = await fetch(`${STRAPI_URL}domain-blacklists?filters[domain][$eq]=${domain}`);
     const domainData = await domainResponse.json();
-    return ipData.data.length > 0 || domainData.data.length > 0;
+    return (ipData && ipData.data) || (domainData && domainData.data) || false;
 };
 const addToBlacklist = async (ip_address, domain) => {
     await Promise.all([
@@ -102,12 +102,13 @@ export async function POST({ request, getClientAddress }) {
     const Company = String(formData.get('company'));
     const Query = String(formData.get('query'));
     const domain = Email.split('@')[1];
-    const data = {Name, Email, Company, Query};
+    const data = {Name, Email, Company, Query, domain};
+    let responseStatus;
     if (await isBlacklisted(ip_address, domain)) {
-        console.log("Blacklisted");
+        responseStatus = 202
     } else if (honeypot) {
         await addToBlacklist(ip_address, domain);
-        console.log("Add to Blacklist")
+        responseStatus = 202
       } else {
         console.log("Sent successfully!", data);
        /**Strapi Webhook */
@@ -120,5 +121,13 @@ export async function POST({ request, getClientAddress }) {
         ...slackRequest,
         body: slackPayload(data)
       });
+      responseStatus = 200
     };
+    let responseBody;
+    if (responseStatus === 200){
+      responseBody = JSON.stringify({success: true, data: data});
+    } else {
+      responseBody = 'Successful!';
+    }
+    return new Response(responseBody, {status: responseStatus});
 }
