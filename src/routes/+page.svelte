@@ -1,31 +1,104 @@
-<script> 
-import Matrix from "$lib/components/matrix.svelte";
+<script>
 export let data;
-function handleFormSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  const fallbackDestination = form.id;
-  fetch(`/api/forms/fallback/${fallbackDestination}`, {
-    method: 'POST',
-    body: new FormData(form)
-  }).then(response => {
-    if (response.ok) {
-      // Handle successful response here
-      console.log('Form submitted successfully.');
-    } else if (response.status === 405) {
-      // Handle 405 error here
-      console.error('Form submission failed with error 405 Method Not Allowed.');
-    } else {
-      // Handle other errors here
-      console.error(`Form submission failed with error ${response.status}.`);
+import Matrix from "$lib/components/matrix.svelte";
+import { toast } from '$lib/toast';
+import posthog from 'posthog-js';
+import { onMount } from 'svelte';
+
+onMount( () => {
+    posthog.capture('$pageview', {
+        Title: 'Homepage',
+        Category: 'Cornerstone',
+    });
+});
+
+let contactSubmits = 0;
+
+async function contactPost(formData) {
+    try {
+        const response = await fetch('/api/forms/contact', {
+            method: 'POST',
+            body: formData
+        });
+        if (response.ok) {
+            contactSubmits = 1;
+            toast.pop();
+            toast.push(`✅ Thanks! We'll get back to you ASAP.`)
+            const responseData = await response.json();
+            const userData = responseData.data;
+            posthog.identify(userData.Email);
+            posthog.people.set({Email: userData.Email});
+            posthog.people.set({FullName: userData.Name});
+            posthog.group('company',userData.domain, {
+                name: userData.Company
+            })
+            posthog.capture('Lead Submission', {
+                Location: 'Homepage',
+                Query: userData.Query
+            })
+            /* Analytics will fire on this response */
+        } else if (response.created) {
+            toast.pop();
+            toast.push(`🛑 Our server detected you as a bot. If this was an error, email hello@scalewhale.com instead.`, {
+                theme: {
+                    '--toastBackground': '#FFDEDE',
+                }});
+            posthog.capture('Bot Detected')
+            /* Analytics will not fire on this response */
+        } else {
+            console.error('Form submission failed:', response.statusText);
+            toast.push(`🛑 Server Error - Email hello@scalewhale.com instead`, {
+                theme: {
+                    '--toastBackground': '#FFDEDE',
+                }
+            });
+            posthog.capture('Form Error',{
+                Status: response.statusText
+            })
+        }
     }
-  }).catch(error => {
-    // Handle fetch error here
-    console.error(error.message);
-  });
+    catch (error) {
+        console.error('Form submission failed:', error);
+        toast.push(`🛑 Server Error - Email hello@scalewhale.com instead`, {
+                theme: {
+                    '--toastBackground': '#FFDEDE',
+                }
+            });
+        posthog.capture('Form Error',{
+                Location: 'Homepage',
+                Status: error
+        })
+    }
+};
+
+async function contactSubmit() {
+    const formData = new FormData(this);
+    if (contactSubmits === 0){
+       contactPost(formData)
+    } else {
+        const submitAgain = confirm('Do you want to submit again?');
+        if (submitAgain) {
+            contactSubmits = 0;
+            contactPost(formData);
+        } else {
+            this.reset();
+        }
+    }
 }
 </script>
-
+<svelte:head>
+    <!--SEO Meta Data-->
+    <title>{data.cornerstone.seo.title}</title>
+    <meta name="description" content={data.cornerstone.seo.desc}>
+    <meta name="keywords" content={data.cornerstone.seo.kw}>
+    <!--Social Meta Data-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:title" content={data.cornerstone.social.title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://scalewhale.com/privacy"/>
+    <meta property="og:image" content={data.cornerstone.social.image}/>
+    <meta property="og:description" content={data.cornerstone.social.desc} />
+</svelte:head>
 <main class="homepage">
     <section id="hero">
         <Matrix size = 15></Matrix>
@@ -80,14 +153,14 @@ function handleFormSubmit(event) {
             </li>
             {/each}
         </ul>
-        <a class="cta grow h3size" href="/guides">See More</a>
+        <a class="cta grow h3size" href="/guides">More Guides</a>
     </section>
     <h2>Clients</h2>
     <section id="clients">
         <div class="grid-div">
         <div class="testimonial">
             <!-- svelte-ignore a11y-media-has-caption -->
-            <video controls disablePictureInPicture controlsList="nodownload noplaybackrate" class="testimonial-video">
+            <video controls disablePictureInPicture controlsList="nodownload noplaybackrate" poster="https://images.scalewhale.com/jsnow-thumbnail.png" class="testimonial-video">
                 <source src="https://images.scalewhale.com/jsnow.mp4" type='video/mp4;'/>
             </video>
             <div class="testimonial-caption">
@@ -129,7 +202,7 @@ function handleFormSubmit(event) {
     <h2>Contact</h2>
     <section id="contact">
         <div class="contact-container">
-        <form method="POST" id="contact" action="?/contact" on:submit={handleFormSubmit}>
+        <form method="POST" id="contact" action="" on:submit|preventDefault={contactSubmit}>
             <input tabindex="-1" type="text" name="url" id="url" autocomplete="off">
             <div class="contact-line">
                 <input type ="text" name="name" id="name" placeholder="Name" autocomplete="name" pattern="^[a-zA-Z]+([ -][a-zA-Z]+)?([ .-][a-zA-Z]+)?$" required>
@@ -142,7 +215,7 @@ function handleFormSubmit(event) {
                 <textarea rows="5" name="query" id="query" minlength="10" placeholder="What do you want to talk about?" autocorrect="off"></textarea>
             </div>
             <div class="contact-line">
-                <button formmethod="post" type="submit" name="submit" id="submit" class=" h3size grow" formaction="?/contact" required>Unlock Your Growth</button> 
+                <button formmethod="post" type="submit" name="submit" id="submit" class=" h3size grow" required on:submit|preventDefault={contactSubmit}>Unlock Your Growth</button> 
             </div>
         </form>
         <h3>Or email</h3>

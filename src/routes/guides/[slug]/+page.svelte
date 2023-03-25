@@ -12,8 +12,30 @@
     function handleNextPage() {
         currentPage + 1;
     };
+    import posthog from 'posthog-js';
+    import { onMount } from 'svelte';
+
+    onMount( () => {
+            posthog.capture('$pageview', {
+            Title: `Guides - Page ${currentPage}`,
+            Category: 'Category',
+        });
+});
     console.log(currentPage, nextPage, previousPage)
 </script>
+<svelte:head>
+        <!--SEO Meta Data-->
+        <title>{data.cornerstone.seo.title}</title>
+        <meta name="description" content={data.cornerstone.seo.desc}>
+        <meta name="keywords" content={data.cornerstone.seo.kw}>
+        <!--Social Meta Data-->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="og:title" content={data.cornerstone.social.title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://scalewhale.com/privacy"/>
+        <meta property="og:image" content={data.cornerstone.social.image}/>
+        <meta property="og:description" content={data.cornerstone.social.desc} />
+</svelte:head>
 
 <main class="guides-page">
     <div class="full-width"><h1>Our Guides</h1></div>

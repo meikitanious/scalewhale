@@ -29,5 +29,9 @@
 		"vite": "^4.0.0",
 		"wrangler": "^2.13.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"posthog-js": "^1.51.5",
+		"svelte-gestures": "^1.4.1"
+	}
 }

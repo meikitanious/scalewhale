@@ -1,6 +1,7 @@
 import { STRAPI_URL, STRAPI_AUTH  } from '$env/static/private';
 export const prerender = false;
 import { redirect } from '@sveltejs/kit';
+const strapiQuerySEO = 'guide?populate[social_image][populate]=[*]';
 export async function load({ params }) {
     if (params === 1 ) {
         throw redirect(301, '/guides')
@@ -38,7 +39,25 @@ export async function load({ params }) {
           }
       }
     }));
-    return { summaries, pageCount, pageNum };
+    const resSEO = await fetch(`${STRAPI_URL}${strapiQuerySEO}`, {
+        headers: {
+          'Authorization': `Bearer ${STRAPI_AUTH}`
+        }
+      });
+        const jsonSEO = await resSEO.json();
+        const cornerstone = {
+            seo: {
+              title: jsonSEO.data.attributes.seo_title,
+              desc: jsonSEO.data.attributes.seo_desc,
+              kw: jsonSEO.data.attributes.seo_keywords,
+            },
+            social: {
+              title: jsonSEO.data.attributes.social_title,
+              desc: jsonSEO.data.attributes.social_desc,
+              image: jsonSEO.data.attributes.social_image.data.attributes.formats.medium.url,
+            },
+          };
+    return { summaries, pageCount, pageNum, cornerstone};
   }
 }
   
