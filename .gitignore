@@ -10,3 +10,9 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 /$env
 /.vscode
+/.vscode/settings.json
+.playwright.config.js
+.prettierrrc
+.prettierignore
+.eslintignore
+.estlincrc.cjs
