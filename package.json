@@ -24,8 +24,6 @@
 		"sass": "^1.57.1",
 		"svelte": "^3.54.0",
 		"svelte-preprocess": "^4.10.7",
-		"svelte-sitemap": "^2.5.4",
-		"sveltekit-static-sitemap": "^1.0.2",
 		"vite": "^4.0.0",
 		"wrangler": "^2.13.0"
 	},
