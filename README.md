@@ -36,7 +36,7 @@ By using REM, smart breakpoints, % values, flex box, etc. -- we have a website t
 ## Swipable Toasts
 We found an awesome repo called [svelte-toast](https://github.com/zerodevx/svelte-toast.git) created by [Jason Lee](https://github.com/zerodevx). 
 
-I wanted to make his project more responsive, so I copied the files into my component folder and configured it to work with another great repo called [svelte-gestures](https://github.com/Rezi/svelte-gestures) by [Tomas Rezac](https://github.com/Rezi). 
+I wanted to make his project more responsive, so I copied the svelte-toast files into my component folder and configured it to work with another great repo called [svelte-gestures](https://github.com/Rezi/svelte-gestures) by [Tomas Rezac](https://github.com/Rezi). 
 
 The result? Users can now effectively swipe away toast notifications on mobile. But, if you wanted different functionality (e.g. DoubleTap), it should work with that too!
 
