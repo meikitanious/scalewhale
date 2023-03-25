@@ -1,4 +1,4 @@
-![Scalewhale Hero Image](https://github.com/meikitanious/scalewhale/blob/readme/screenshot.png)
+![Scalewhale Hero Image](https://github.com/meikitanious/scalewhale/blob/main/readme/screenshot.png)
 
 # Welcome to Scalewhale!
 
