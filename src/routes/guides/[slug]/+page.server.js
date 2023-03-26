@@ -34,7 +34,7 @@ export async function load({ params }) {
                   tn: post.attributes.author.data.attributes.pfp.data.attributes.formats.thumbnail.url,
                   sm: post.attributes.author.data.attributes.pfp.data.attributes.formats.small.url,
                   md: post.attributes.author.data.attributes.pfp.data.attributes.formats.medium.url,
-                  lg: post.attributes.author.data.attributes.pfp.data.attributes.formats.large.url,
+                  lg: post.attributes.author.data.attributes.pfp.data.attributes.formats.large.url
               }
           }
       }

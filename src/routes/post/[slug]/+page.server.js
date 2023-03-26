@@ -14,7 +14,9 @@ export async function load({ params }) {
             desc: post.attributes.desc,
             likes: post.attributes.likes,
             date: post.attributes.date,
-            content: post.attributes.content.replace(/<h2(?:\s+class=".*?")?>(.*?)<\/h2>/gi, '<div class="full-width"><h2>$1</h2></div>').replace(/<p>(\s*<img.*?>\s*)<\/p>/gi, '$1'),
+            content: post.attributes.content
+            .replace(/<h2(?:\s+class=".*?")?>(.*?)<\/h2>/gi, '<div class="full-width"><h2>$1</h2></div>')
+            .replace(/<p>(\s*<img.*?>\s*)<\/p>/gi, '$1'),
             featimg:{
                 alt:post.attributes.featured_image.data.attributes.alternativeText,
                 src:{
@@ -49,7 +51,7 @@ export async function load({ params }) {
                     tm: post.attributes.author.data.attributes.pfp.data.attributes.formats.thumbnail.url,
                     sm: post.attributes.author.data.attributes.pfp.data.attributes.formats.small.url,
                     md: post.attributes.author.data.attributes.pfp.data.attributes.formats.medium.url,
-                    lg: post.attributes.author.data.attributes.pfp.data.attributes.formats.large.url,
+                    lg: post.attributes.author.data.attributes.pfp.data.attributes.formats.large.url
                 }
             }
         }

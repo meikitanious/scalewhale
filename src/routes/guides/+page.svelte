@@ -19,7 +19,7 @@ onMount( () => {
         <meta name="twitter:card" content="summary_large_image">
         <meta property="og:title" content={data.cornerstone.social.title} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scalewhale.com/privacy"/>
+        <meta property="og:url" content="https://scalewhale.com/guides"/>
         <meta property="og:image" content={data.cornerstone.social.image}/>
         <meta property="og:description" content={data.cornerstone.social.desc} />
 </svelte:head>
@@ -47,7 +47,7 @@ onMount( () => {
                 <span class="h3size">{blog.title}</span>
                 <div class="card-footer">
                     <span class="card-footer-author">
-                        <img class="card-footer-author-thumbnail" alt={author.pfp.alt} src={author.pfp.src.sm}>
+                        <img class="card-footer-author-thumbnail" alt={author.pfp.alt} src={author.pfp.src.tn}>
                         <span class="card-footer-author-name">{author.fn + " " + author.ln}</span>
                     </span>
                     <span class="card-footer-date"><time datetime="{date}">{date.split("-")[1] + "/" + date.split("-")[2] + "/" + date.split("-")[0].substring(2)}</time></span>
@@ -61,7 +61,7 @@ onMount( () => {
 {#if data.pageCount > 1}
 <aside class="guide-nav">
     <nav>
-        <ul><li><a href="/guides/2"><img alt="Arrow pointing right" src="/ar.svg"></a></li></ul>
+        <ul><li><a href="/guides/2"><img alt="Arrow pointing right" src="/icons/ar.svg"></a></li></ul>
     </nav>
 </aside>
 {/if}

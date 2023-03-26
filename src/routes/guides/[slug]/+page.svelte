@@ -60,7 +60,7 @@
                 <span class="h3size">{blog.title}</span>
                 <div class="card-footer">
                     <span class="card-footer-author">
-                        <img class="card-footer-author-thumbnail" alt={author.pfp.alt} src={author.pfp.src.sm}>
+                        <img class="card-footer-author-thumbnail" alt={author.pfp.alt} src={author.pfp.src.tn}>
                         <span class="card-footer-author-name">{author.fn + " " + author.ln}</span>
                     </span>
                     <span class="card-footer-date"><time datetime="{date}">{date.split("-")[1] + "/" + date.split("-")[2] + "/" + date.split("-")[0].substring(2)}</time></span>
@@ -75,14 +75,14 @@
 <aside class="guide-nav"><nav><ul>
     <li class="backwards">
         {#if currentPage === 2}
-        <a href="/guides"><img alt="Arrow pointing left" src="/al.svg"></a>
+        <a href="/guides"><img alt="Arrow pointing left" src="/icons/al.svg"></a>
         {:else}
         <a href="/guides/{previousPage}" on:click={handlePreviousPage}><img alt="Arrow pointing left" src="/al.svg"></a>
         {/if}
     </li>
     {#if currentPage < totalPages}
     <li class="forwards">
-        <a href="/guides/{nextPage}" on:click={handleNextPage}><img alt="Arrow pointing right" src="/ar.svg"></a>
+        <a href="/guides/{nextPage}" on:click={handleNextPage}><img alt="Arrow pointing right" src="/icons/ar.svg"></a>
     </li>
     {/if}
 </ul></nav></aside>
