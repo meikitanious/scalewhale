@@ -5,6 +5,7 @@
 	import { SvelteToast } from '$lib/toast/';
 	import posthog from 'posthog-js';
 	export let data;
+	let fbc = '';
 	onMount(async () => {
 		posthog.init(data.phAPI, {
     		api_host: data.phHost,
@@ -18,7 +19,16 @@
 				maskAllInputs: false,
 				recordCanvas: true
 			}
-	})});
+	});
+	const params = new URLSearchParams(document.location.search);
+	let fbclid = params.get("fbclid");
+	if (fbclid) {
+		let currentTime = Date.now();
+  		let unixTime = Math.floor(currentTime);
+		fbc = `fb.1.${unixTime}.${fbclid}`;
+		zaraz.set("fbc",fbc);
+	}
+	});
 </script>
 <SvelteToast/>
 <Header></Header>

@@ -35,7 +35,9 @@ async function contactPost(formData) {
             posthog.capture('Lead Submission', {
                 Location: 'Homepage',
                 Query: userData.Query
-            })
+            });
+            zaraz.set('Email',userData.Email);
+            zaraz.track('Form Submission');
             /* Analytics will fire on this response */
         } else if (response.created) {
             toast.pop();
