@@ -108,7 +108,7 @@ async function contactSubmit() {
                 <h3>Accelerate your growth<br> with our data focused<br> performance marketing</h3>
                 <a class="h3size grow" href="/#contact">Unlock Your Growth</a>
             </div>
-            <img src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/images/datawhale.png" alt="datawhale">
+            <img src="/images/datawhale.png" alt="datawhale">
         </div>
     </section>
     <h2>Services</h2>
@@ -160,14 +160,14 @@ async function contactSubmit() {
         <div class="grid-div">
         <div class="testimonial">
             <!-- svelte-ignore a11y-media-has-caption -->
-            <video controls disablePictureInPicture controlsList="nodownload noplaybackrate" poster="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=autohttps://images.scalewhale.com/jsnow-thumbnail.png" class="testimonial-video">
+            <video controls disablePictureInPicture controlsList="nodownload noplaybackrate" poster="https://images.scalewhale.com/jsnow-thumbnail.png" class="testimonial-video">
                 <source src="https://images.scalewhale.com/jsnow.mp4" type='video/mp4;'/>
             </video>
             <div class="testimonial-caption">
                 <h3>Jeff Snow</h3>
                 <span class="h4size">
                     <p>Director of Growth &#64;</p>
-                    <img class="caption-logo-nzxt" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/clients/nzxt.svg" alt="NZXT"/>
+                    <img class="caption-logo-nzxt" src="/logos/clients/nzxt.svg" alt="NZXT"/>
                 </span>
             </div>
         </div>
@@ -175,25 +175,25 @@ async function contactSubmit() {
         <h3>We're proud to <br>have worked with:</h3>
         <div class="logos">
             <a href="https://bloomreach.com">
-                <img id="bloomreach" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/clients/bloomreach.svg" alt="Bloomreach Logo">
+                <img id="bloomreach" src="/logos/clients/bloomreach.svg" alt="Bloomreach Logo">
             </a>
             <a href="https://nzxt.com">
-                <img id="nzxt" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/clients/nzxt.svg" alt="NZXT logo">
+                <img id="nzxt" src="/logos/clients/nzxt.svg" alt="NZXT logo">
             </a>
             <a href="https://fellowproducts.com">
-                <img id="fellow" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/clients/fellow.svg" alt="Fellow Products Logo">
+                <img id="fellow" src="/logos/clients/fellow.svg" alt="Fellow Products Logo">
             </a>
             <a href="https://cushion.ai">
-                <img id="cushion" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/clients/cushion.svg" alt="Cushion Logo">
+                <img id="cushion" src="/logos/clients/cushion.svg" alt="Cushion Logo">
             </a>
             <a href="https://irl.com">
-                <img id="irl" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/clients/irl.svg" alt="IRL logo">
+                <img id="irl" src="/logos/clients/irl.svg" alt="IRL logo">
             </a>
             <a href="https://kyla.com">
-                <img id="kyla" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/clients/kyla.svg" alt="Kyla logo">
+                <img id="kyla" src="/logos/clients/kyla.svg" alt="Kyla logo">
             </a>
             <a href="https://outco.io">
-                <img id="outco" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/clients/outco.svg" alt="Outco Logo">
+                <img id="outco" src="/logos/clients/outco.svg" alt="Outco Logo">
             </a>
         </div>
     </div>

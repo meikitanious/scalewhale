@@ -61,7 +61,7 @@ onMount( () => {
 {#if data.pageCount > 1}
 <aside class="guide-nav">
     <nav>
-        <ul><li><a href="/guides/2"><img alt="Arrow pointing right" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/ar.svg"></a></li></ul>
+        <ul><li><a href="/guides/2"><img alt="Arrow pointing right" src="/icons/ar.svg"></a></li></ul>
     </nav>
 </aside>
 {/if}

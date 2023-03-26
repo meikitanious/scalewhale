@@ -77,21 +77,21 @@ async function newsletterSubmit() {
     <div class="footer-divider">
         <div class="footer-left">
             <a href="/">
-                <img class="footer-nav-logo" alt="Scalewhale Logo" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/scalewhale.svg"/>
+                <img class="footer-nav-logo" alt="Scalewhale Logo" src="/logos/scalewhale.svg"/>
             </a>
             <h3>Connect with us online</h3>
             <ul class="footer-social-links">
                 <a class="footer-social-linkedin" href="https://linkedin.com/in/meikitanious">
-                    <img alt="LinkedIn Icon" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/social/linkedin.svg"/>
+                    <img alt="LinkedIn Icon" src="/logos/social/linkedin.svg"/>
                 </a>
                 <a class="footer-social-discord" href="https://discord.gg/SUqq7rmVSR">
-                    <img alt="Discord Icon" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/social/discord.svg"/>
+                    <img alt="Discord Icon" src="/logos/social/discord.svg"/>
                 </a>
                 <a class="footer-social-reddit" href="https://www.reddit.com/user/miketanious">
-                    <img alt="Reddit Icon" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/social/reddit.svg"/>
+                    <img alt="Reddit Icon" src="/logos/social/reddit.svg"/>
                 </a>
                 <a class="footer-social-whatsapp" href="https://api.whatsapp.com/send?phone=19736077181">
-                    <img alt="WhatsApp Icon" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/social/whatsapp.svg"/>
+                    <img alt="WhatsApp Icon" src="/logos/social/whatsapp.svg"/>
                 </a>
             </ul>
         </div>
@@ -112,7 +112,7 @@ async function newsletterSubmit() {
             <input tabindex="-1" type="text" name="url" id="url" autocomplete="off">
             <input type ="email" name="email" id="email" placeholder="Business Email" required>
             <button formmethod="post" type="submit" name="submit" id="submit" on:submit|preventDefault={newsletterSubmit} required>
-                <img alt="Submit" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/icons/arrowright.svg">
+                <img alt="Submit" src="/icons/arrowright.svg">
             </button> 
         </form>
     </div>
