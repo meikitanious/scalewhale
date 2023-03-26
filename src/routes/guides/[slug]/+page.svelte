@@ -75,14 +75,14 @@
 <aside class="guide-nav"><nav><ul>
     <li class="backwards">
         {#if currentPage === 2}
-        <a href="/guides"><img alt="Arrow pointing left" src="/al.svg"></a>
+        <a href="/guides"><img alt="Arrow pointing left" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/al.svg"></a>
         {:else}
         <a href="/guides/{previousPage}" on:click={handlePreviousPage}><img alt="Arrow pointing left" src="/al.svg"></a>
         {/if}
     </li>
     {#if currentPage < totalPages}
     <li class="forwards">
-        <a href="/guides/{nextPage}" on:click={handleNextPage}><img alt="Arrow pointing right" src="/ar.svg"></a>
+        <a href="/guides/{nextPage}" on:click={handleNextPage}><img alt="Arrow pointing right" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/ar.svg"></a>
     </li>
     {/if}
 </ul></nav></aside>

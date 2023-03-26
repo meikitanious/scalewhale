@@ -14,7 +14,10 @@ export async function load({ params }) {
             desc: post.attributes.desc,
             likes: post.attributes.likes,
             date: post.attributes.date,
-            content: post.attributes.content.replace(/<h2(?:\s+class=".*?")?>(.*?)<\/h2>/gi, '<div class="full-width"><h2>$1</h2></div>').replace(/<p>(\s*<img.*?>\s*)<\/p>/gi, '$1'),
+            content: post.attributes.content
+            .replace(/<h2(?:\s+class=".*?")?>(.*?)<\/h2>/gi, '<div class="full-width"><h2>$1</h2></div>')
+            .replace(/<p>(\s*<img.*?>\s*)<\/p>/gi, '$1')
+            .replace(/(<img.*?src=")(.*?)(".*?>)/gi, `$1/cdn-cgi/image/width=1000,onerror=redirect,format=auto,fit=auto/$2$3`),
             featimg:{
                 alt:post.attributes.featured_image.data.attributes.alternativeText,
                 src:{
@@ -46,10 +49,10 @@ export async function load({ params }) {
             pfp:{
                 alt:post.attributes.author.data.attributes.pfp.data.attributes.alternativeText,
                 src:{
-                    tm: post.attributes.author.data.attributes.pfp.data.attributes.formats.thumbnail.url,
-                    sm: post.attributes.author.data.attributes.pfp.data.attributes.formats.small.url,
-                    md: post.attributes.author.data.attributes.pfp.data.attributes.formats.medium.url,
-                    lg: post.attributes.author.data.attributes.pfp.data.attributes.formats.large.url,
+                    tm: post.attributes.author.data.attributes.pfp.data.attributes.formats.thumbnail.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`),
+                    sm: post.attributes.author.data.attributes.pfp.data.attributes.formats.small.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`),
+                    md: post.attributes.author.data.attributes.pfp.data.attributes.formats.medium.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`),
+                    lg: post.attributes.author.data.attributes.pfp.data.attributes.formats.large.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`),
                 }
             }
         }

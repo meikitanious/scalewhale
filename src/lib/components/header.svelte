@@ -3,7 +3,7 @@
     <nav class="header-nav">
     <!--Logo with link to the homepage-->
             <a id="header-logo" href="/">
-                <img class="logo" src="/logos/scalewhale.svg" alt="Scalewhale Logo">
+                <img class="logo" src="/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto/logos/scalewhale.svg" alt="Scalewhale Logo">
             </a>
             <input type="checkbox" class="menu-btn" id="menu-btn">
             <label class="menu-icon" for="menu-btn">
