@@ -160,7 +160,7 @@ async function contactSubmit() {
         <div class="grid-div">
         <div class="testimonial">
             <!-- svelte-ignore a11y-media-has-caption -->
-            <video controls disablePictureInPicture controlsList="nodownload noplaybackrate" poster="https://images.scalewhale.com/jsnow-thumbnail.png" class="testimonial-video">
+            <video controls disablePictureInPicture controlsList="nodownload noplaybackrate" poster="https://images.scalewhale.com/jsnow-thumbnail.webp" class="testimonial-video">
                 <source src="https://images.scalewhale.com/jsnow.mp4" type='video/mp4;'/>
             </video>
             <div class="testimonial-caption">
