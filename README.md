@@ -48,6 +48,8 @@ I wanted to make sure I used as little JavaScript as possible to keep this lean.
 
 Analytics for this project is implemented using [Posthog](https://github.com/PostHog/posthog), which gives me great data for marketing without sacrificing user privacy the way Google Analytics does.
 
+I've also gone ahead and implemented support for Cloudflare Zaraz; a much more privacy focused and cleaner alternative to Google Tag Manager.
+
 # Future Improvements / Features
 
 As a marketer, I'm grateful Svelte gave me a framework that made the process of coding my first website enjoyable. That said, I have a lot of room for optimization so here are things I'm actively working on:
