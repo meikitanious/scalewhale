@@ -52,7 +52,7 @@ export async function load({ params }) {
                     tm: post.attributes.author.data.attributes.pfp.data.attributes.formats.thumbnail.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`),
                     sm: post.attributes.author.data.attributes.pfp.data.attributes.formats.small.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`),
                     md: post.attributes.author.data.attributes.pfp.data.attributes.formats.medium.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`),
-                    lg: post.attributes.author.data.attributes.pfp.data.attributes.formats.large.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`),
+                    lg: post.attributes.author.data.attributes.pfp.data.attributes.formats.large.url.replace(/^(.*?)(\.[^.]*$|$)/gi, `/cdn-cgi/image/width=450,onerror=redirect,format=auto,fit=auto$2`)
                 }
             }
         }
