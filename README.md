@@ -1,10 +1,10 @@
-![Scalewhale Hero Image](https://github.com/meikitanious/scalewhale/blob/main/readme/screenshot.png)
+[![Scalewhale Hero Image](https://github.com/meikitanious/scalewhale/blob/main/readme/screenshot.png)](https://scalewhale.com?utm_source=github&utm_medium=organic&utm_campaign=readme
 
 # Welcome to Scalewhale!
 
 The official Scalewhale website! At Scalewhale, we believe growth marketing is best facilitated with technical expertise, automation, operations, and analytics. 
 
-For guides on cool hacks, visit our [guides section here.](https://scalewhale.com/guides). 
+For guides on cool hacks, visit our [guides section here.](https://scalewhale.com/guides?utm_source=github&utm_medium=organic&utm_campaign=readme). 
 
 This project is proudly created using [SvelteKit!](https://kit.svelte.dev). If you want to duplicate this repo to use as a starter for your portfolio/agency/blog site, here's some cool features:
 
