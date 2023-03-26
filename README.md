@@ -71,6 +71,10 @@ In a future update, I might introduce minification as well.
 
 I want to make my blog easier to find, so I do plan on integrating those features relatively soon.
 
+## Typescript Migration
+
+I know Typescript is the way to go, but I haven't learned it yet. Eventually I'll overhaul this project and have it written in TypeScript to bring it up to modern standards.
+
 # Svelte Build Commands
 
 ## Developing
