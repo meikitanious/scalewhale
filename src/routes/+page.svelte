@@ -108,7 +108,7 @@ async function contactSubmit() {
                 <h3>Accelerate your growth<br> with our data focused<br> performance marketing</h3>
                 <a class="h3size grow" href="/#contact">Unlock Your Growth</a>
             </div>
-            <img src="/images/datawhale.png" alt="datawhale">
+            <img src="https://images.scalewhale.com/datawhale.webp" alt="datawhale">
         </div>
     </section>
     <h2>Services</h2>
@@ -144,7 +144,7 @@ async function contactSubmit() {
                     <span class="h3size">{blog.title}</span>
                     <div class="card-footer">
                         <span class="card-footer-author">
-                            <img class="card-footer-author-thumbnail" alt={author.pfp.alt} src={author.pfp.src.sm}>
+                            <img class="card-footer-author-thumbnail" alt={author.pfp.alt} src={author.pfp.src.tn}>
                             <span class="card-footer-author-name">{author.fn + " " + author.ln}</span>
                         </span>
                         <span class="card-footer-date"><time datetime="{date}">{date.split("-")[1] + "/" + date.split("-")[2] + "/" + date.split("-")[0].substring(2)}</time></span>
