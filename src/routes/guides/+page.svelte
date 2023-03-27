@@ -19,7 +19,7 @@ onMount( () => {
         <meta name="twitter:card" content="summary_large_image">
         <meta property="og:title" content={data.cornerstone.social.title} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scalewhale.com/privacy"/>
+        <meta property="og:url" content="https://scalewhale.com/guides"/>
         <meta property="og:image" content={data.cornerstone.social.image}/>
         <meta property="og:description" content={data.cornerstone.social.desc} />
 </svelte:head>
