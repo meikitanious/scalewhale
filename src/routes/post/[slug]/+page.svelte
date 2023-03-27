@@ -35,12 +35,12 @@
     <header class="post-header">
         <div class="header-content">
             <div class="card-tags">
-                {#each tags.sort() as tag}
-                    {#if tag === "Automation"  || tag === "First-party"}
+                {#each tags as tag}
+                    {#if tag === "Automation"}
                     <span class="pink accent">{tag}</span>
                     {:else if tag === "Creative"}
                     <span class="red accent">{tag}</span>
-                    {:else if tag === "Paid Media" || tag === "GTM"}
+                    {:else if tag === "Paid Media"}
                     <span class="orange accent">{tag}</span>
                     {:else}
                     <span class="green accent">{tag}</span>
