@@ -76,6 +76,9 @@
             text-align:left;
             width:90%;
         }
+        ul {
+            list-style-type:circle; 
+        }
         > .full-width {
             padding: 6% 0;
             background-color:var(--primary);
