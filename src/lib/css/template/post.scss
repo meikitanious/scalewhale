@@ -134,6 +134,9 @@
             overflow:scroll;
             max-height:200px;
         }
+        a {
+            color: var(--primary)
+        }
     }
     .post-footer {
         display:flex;
