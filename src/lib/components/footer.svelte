@@ -20,9 +20,7 @@ async function newsletterPost(formData) {
             posthog.people.set({Email: userData.email});
             posthog.capture('Newsletter Signup', {
                 Location: page.path,
-            });
-            zaraz.set('Email',userData.email);
-            zaraz.track('Newsletter Submission');
+            })
             /* Analytics will fire on this response */
         } else if (response.created) {
             toast.pop();
@@ -72,11 +70,6 @@ async function newsletterSubmit() {
         }
     }
 }
-
-async function socialTrack(channel) {
-    posthog.capture('Social Link Click', {
-        'Destination': channel
-    })};
  </script>
 
 <footer class="footer">
@@ -88,16 +81,16 @@ async function socialTrack(channel) {
             </a>
             <h3>Connect with us online</h3>
             <ul class="footer-social-links">
-                <a class="footer-social-linkedin" href="https://linkedin.com/in/meikitanious" on:click={socialTrack({channel: 'LinkedIn'})}>
+                <a class="footer-social-linkedin" href="https://linkedin.com/in/meikitanious">
                     <img alt="LinkedIn Icon" src="/logos/social/linkedin.svg"/>
                 </a>
-                <a class="footer-social-discord" href="https://discord.gg/SUqq7rmVSR" on:click={socialTrack({channel: 'Discord'})}>
+                <a class="footer-social-discord" href="https://discord.gg/SUqq7rmVSR">
                     <img alt="Discord Icon" src="/logos/social/discord.svg"/>
                 </a>
-                <a class="footer-social-reddit" href="https://www.reddit.com/user/miketanious" on:click={socialTrack({channel: 'Reddit'})}>
+                <a class="footer-social-reddit" href="https://www.reddit.com/user/miketanious">
                     <img alt="Reddit Icon" src="/logos/social/reddit.svg"/>
                 </a>
-                <a class="footer-social-whatsapp" href="https://api.whatsapp.com/send?phone=19736077181" on:click={socialTrack({channel: 'WhatsApp'})}>
+                <a class="footer-social-whatsapp" href="https://api.whatsapp.com/send?phone=19736077181">
                     <img alt="WhatsApp Icon" src="/logos/social/whatsapp.svg"/>
                 </a>
             </ul>
