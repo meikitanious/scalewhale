@@ -28,37 +28,37 @@ export async function GET() {
         <?xml version="1.0" encoding="UTF-8" ?>
         <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
             <url>
-                <loc>https:/scalewhale.com</loc>
+                <loc>https://scalewhale.com</loc>
                 <lastmod>2023-03-25</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https:/scalewhale.com/guides</loc>
+                <loc>https://scalewhale.com/guides</loc>
                 <lastmod>2023-03-25</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https:/scalewhale.com/ads</loc>
+                <loc>https://scalewhale.com/ads</loc>
                 <lastmod>2023-03-25</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https:/scalewhale.com/analytics</loc>
+                <loc>https://scalewhale.com/analytics</loc>
                 <lastmod>2023-03-25</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https:/scalewhale.com/ops</loc>
+                <loc>https://scalewhale.com/ops</loc>
                 <lastmod>2023-03-25</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https:/scalewhale.com/tech</loc>
+                <loc>https://scalewhale.com/tech</loc>
                 <lastmod>2023-03-25</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.8</priority>
