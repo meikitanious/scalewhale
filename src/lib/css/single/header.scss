@@ -54,6 +54,9 @@ li > .cta {
         gap:150px;
     }
     max-width:1600px;
+    > input {
+        display:none;
+    }
 }
 .nav-menu{
     display:flex;
