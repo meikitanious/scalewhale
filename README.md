@@ -1,10 +1,10 @@
-![Scalewhale Hero Image](https://github.com/meikitanious/scalewhale/blob/main/readme/screenshot.png)
+[![Scalewhale Hero Image](https://github.com/meikitanious/scalewhale/blob/main/readme/screenshot.png)](https://scalewhale.com?utm_source=github&utm_medium=organic&utm_campaign=readme)
 
 # Welcome to Scalewhale!
 
 The official Scalewhale website! At Scalewhale, we believe growth marketing is best facilitated with technical expertise, automation, operations, and analytics. 
 
-For guides on cool hacks, visit our [guides section here.](https://scalewhale.com/guides). 
+For guides on cool hacks, visit our [guides section here.](https://scalewhale.com/guides?utm_source=github&utm_medium=organic&utm_campaign=readme). 
 
 This project is proudly created using [SvelteKit!](https://kit.svelte.dev). If you want to duplicate this repo to use as a starter for your portfolio/agency/blog site, here's some cool features:
 
@@ -36,7 +36,7 @@ By using REM, smart breakpoints, % values, flex box, etc. -- we have a website t
 ## Swipable Toasts
 We found an awesome repo called [svelte-toast](https://github.com/zerodevx/svelte-toast.git) created by [Jason Lee](https://github.com/zerodevx). 
 
-I wanted to make his project more responsive, so I copied the files into my component folder and configured it to work with another great repo called [svelte-gestures](https://github.com/Rezi/svelte-gestures) by [Tomas Rezac](https://github.com/Rezi). 
+I wanted to make his project more responsive, so I copied the svelte-toast files into my component folder and configured it to work with another great repo called [svelte-gestures](https://github.com/Rezi/svelte-gestures) by [Tomas Rezac](https://github.com/Rezi). 
 
 The result? Users can now effectively swipe away toast notifications on mobile. But, if you wanted different functionality (e.g. DoubleTap), it should work with that too!
 
@@ -47,6 +47,8 @@ I wanted to make sure I used as little JavaScript as possible to keep this lean.
 ## Privacy-Focused Analytics
 
 Analytics for this project is implemented using [Posthog](https://github.com/PostHog/posthog), which gives me great data for marketing without sacrificing user privacy the way Google Analytics does.
+
+I've also gone ahead and implemented support for Cloudflare Zaraz; a much more privacy focused and cleaner alternative to Google Tag Manager.
 
 # Future Improvements / Features
 
@@ -70,6 +72,10 @@ In a future update, I might introduce minification as well.
 ## RSS, Google News, & AMP Support
 
 I want to make my blog easier to find, so I do plan on integrating those features relatively soon.
+
+## Typescript Migration
+
+I know Typescript is the way to go, but I haven't learned it yet. Eventually I'll overhaul this project and have it written in TypeScript to bring it up to modern standards.
 
 # Svelte Build Commands
 
