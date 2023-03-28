@@ -286,9 +286,27 @@
                         gap:5px;
                         width:100%;
                     }
-                    > .card-tags > span {
+                    > .card-tags {
                         display:flex;
                         justify-content:left;
+                        @media (max-width:329px) {
+                            width: 100%;
+                        }
+                        @media (min-width:330px) and (max-width:374px) {
+                            width: 280px
+                        }
+                        @media (min-width:375px) and (max-width:460px) {
+                            width: 300px
+                        }
+                        @media (min-width:460px) and (max-width:1023px) {
+                            width:350px;
+                        }
+                        @media (min-width:1024px) {
+                            width:100%;
+                        }
+
+                    }
+                    > .card-tags > span {
                         color: #000;
                         padding: 1% 2%;
                         border-radius: 24px;
