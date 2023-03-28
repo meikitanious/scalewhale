@@ -16,7 +16,8 @@ export async function load({ params }) {
             date: post.attributes.date,
             content: post.attributes.content
             .replace(/<h2(?:\s+class=".*?")?>(.*?)<\/h2>/gi, '<div class="full-width"><h2>$1</h2></div>')
-            .replace(/<p>(\s*<img.*?>\s*)<\/p>/gi, '$1'),
+            .replace(/<p>(\s*<img.*?>\s*)<\/p>/gi, '$1')
+            .replace(/<a\s+(?!href=["']https?:\/\/(www\.)?scalewhale.com(\/.*)?#).*?href=(["'])(.*?)\3.*?>/gi, '<a target="_blank" href="$4">'),
             featimg:{
                 alt:post.attributes.featured_image.data.attributes.alternativeText,
                 src:{
