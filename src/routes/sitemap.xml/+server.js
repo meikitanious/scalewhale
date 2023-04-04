@@ -17,7 +17,7 @@ export async function GET() {
     for (const post of posts) {
         postsSitemap += `
             <url>
-                <loc>https://scalewhale.com/${post.slug}</loc>
+                <loc>https://scalewhale.com/post/${post.slug}</loc>
                 <lastmod>${post.date}</lastmod>
                 <changefreq>weekly</changefreq>
                 <priority>0.7</priority>
