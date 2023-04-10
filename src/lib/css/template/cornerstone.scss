@@ -13,7 +13,7 @@
         align-items:center;
         padding: 10% 0;
         > .header-content {
-            max-width:1440px;
+            max-width:900px;
             flex-direction:column;
             justify-content:center;
             text-align:center;
@@ -21,14 +21,8 @@
             @media (min-width:768px){
                 width: 80%;
             }
-            @media (min-width:1024px){
+            @media (min-width:900px){
                 width: 70%;
-            }
-            @media (min-width:1280px){
-                width: 60%;
-            }
-            @media (min-width:1440px){
-                width: 50%;
             }
             > h1 {
                 color: var(--white);
@@ -55,13 +49,13 @@
             font-weight: 600;
         }
         > p, h3, pre, h4 {
-            max-width:1440px;
+            max-width:900px;
             text-align:left;
             width:90%;
         }
         ol, ul {
             padding-left: 4%;
-            max-width:1440px;
+            max-width:900px;
             text-align:left;
             width:90%;
         }
@@ -76,13 +70,12 @@
             > h2 {
                 text-align:center;
                 width:100%;
-                max-width:1440px;
+                max-width:900px;
                 @media (min-width:680px){
                     text-align:left;
                     width:90%;
                 }
             }
-
             width:100%;
             margin: 1% 0;
             @media(min-width:1024px){
@@ -93,7 +86,7 @@
             align-self:center;
             margin: 1% 0;
             width: 80%;
-            max-width:1440px;
+            max-width:900px;
         }
         > figure {
             display:flex;
@@ -119,6 +112,9 @@
             border-radius: 0.3em;
             overflow:scroll;
             max-height:200px;
+        }
+        > h3 {
+            padding: 1% 0;
         }
     }
 }
