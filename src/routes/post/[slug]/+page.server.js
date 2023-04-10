@@ -18,14 +18,6 @@ export async function load({ params }) {
             .replace(/<h2(?:\s+class=".*?")?>(.*?)<\/h2>/gi, '<div class="full-width"><h2>$1</h2></div>')
             .replace(/<p>(\s*<img.*?>\s*)<\/p>/gi, '$1')
             .replace(/<a\s+(?!href=["']https?:\/\/(www\.)?scalewhale.com(\/.*)?#).*?href=(["'])(.*?)\3.*?>/gi, '<a target="_blank" href="$4">'),
-            featimg:{
-                alt:post.attributes.featured_image.data.attributes.alternativeText,
-                src:{
-                    sm:post.attributes.featured_image.data.attributes.formats.small.url,
-                    md:post.attributes.featured_image.data.attributes.formats.medium.url,
-                    lg:post.attributes.featured_image.data.attributes.formats.large.url,
-                }
-            } 
         },
         seo:{
             title: post.attributes.seo_title,
