@@ -37,7 +37,7 @@ export async function load({ params }) {
             title: post.attributes.author.data.attributes.title,
             bio: post.attributes.author.data.attributes.bio,
             company: post.attributes.author.data.attributes.company,
-            li: post.attributes.author.data.attributes.li,
+            li: post.attributes.author.data.attributes.linkedin,
             pfp:{
                 alt:post.attributes.author.data.attributes.pfp.data.attributes.alternativeText,
                 src:{
